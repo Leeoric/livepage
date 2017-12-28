@@ -1,11 +1,7 @@
 <template>
-	<div>
-	</div>
+    <div>评论</div>
 </template>
 <script type="text/ecmascript-6">
-
 </script>
-
-<style lang="scss" scoped type="text/css">
-
+<style scoped lang="stylus" rel="stylesheet/stylus">
 </style>

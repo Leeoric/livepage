@@ -1,25 +1,33 @@
 <template>
   <div id="app">
     <video-box></video-box>
-    <router-view/>
+    <tab></tab>
+    <transition>
+      <keep-alive>
+        <router-view/>
+      </keep-alive>
+    </transition>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
   import VideoBox from 'components/video-box/VideoBox'
+  import Tab from 'components/tab/Tab'
 
   export default {
     name: 'app',
     components: {
-      VideoBox
+      VideoBox, Tab
+    },
+    methods: {
     }
   }
 </script>
 
-<style>
+<style scoped lang="stylus" rel="stylesheet/stylus">
+  @import "./common/stylus/variable"
+
   #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    color: $color-theme
   }
 </style>

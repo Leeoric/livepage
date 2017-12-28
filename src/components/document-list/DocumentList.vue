@@ -1,7 +1,11 @@
 <template>
-    <div>会议简介</div>
+	<div>
+    文档
+	</div>
 </template>
 <script type="text/ecmascript-6">
 </script>
+
 <style scoped lang="stylus" rel="stylesheet/stylus">
+
 </style>
