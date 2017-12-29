@@ -1,5 +1,5 @@
 <template>
-  <div class="video-box">
+  <div class="video-box" id="videoBox">
     <div class="video-container" ref="videoContainer">
       <div class="video-img" ref="videoImg" v-show="!display">
         <img src="">
