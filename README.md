@@ -1,6 +1,6 @@
 # livepage
 
-> A Vue.js project
+> live page for 3c,used vue/vuex/vueRouter/mint-ui/mockjs/videojs-contrib-hls/vue-video-player/axios/...and so on
 
 ## Build Setup
 
