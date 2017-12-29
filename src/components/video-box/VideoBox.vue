@@ -10,16 +10,6 @@
                     :options="playerOptions"
                     :playsinline="true"
                     customEventName="customstatechangedeventname"
-                    @play="onPlayerPlay($event)"
-                    @pause="onPlayerPause($event)"
-                    @ended="onPlayerEnded($event)"
-                    @waiting="onPlayerWaiting($event)"
-                    @playing="onPlayerPlaying($event)"
-                    @loadeddata="onPlayerLoadeddata($event)"
-                    @timeupdate="onPlayerTimeupdate($event)"
-                    @canplay="onPlayerCanplay($event)"
-                    @canplaythrough="onPlayerCanplaythrough($event)"
-                    @statechanged="playerStateChanged($event)"
                     @ready="playerReadied">
       </video-player>
     </div>
@@ -43,8 +33,8 @@
           sourceOrder: true,
           flash: {hls: {withCredentials: false}},
           html5: {hls: {withCredentials: false}},
-          sources: [],
-          poster: './../../assets/preview.png'
+          sources: []
+//          poster: 'src/assets/preview.jpg'
 //          controlBar: {
 //            timeDivider: false, // 时间分割线
 //            durationDisplay: false, // 总时间
@@ -81,42 +71,11 @@
           if (this.video.image) {
             this.$refs.videoImg.children[0].src = this.video.image
           } else {
-            this.$refs.videoImg.children[0].src = 'src/assets/preview.jpg?v=' + new Date().getTime()
           }
         }
       },
       Countdown () {
         // TODO 倒计时功能
-      },
-      onPlayerPlay (event) {
-        console.log(event)
-      },
-      onPlayerPause (event) {
-        console.log(event)
-      },
-      onPlayerEnded (event) {
-        console.log(event)
-      },
-      onPlayerWaiting (event) {
-        console.log(event)
-      },
-      onPlayerPlaying (event) {
-        console.log(event)
-      },
-      onPlayerLoadeddata (event) {
-        console.log(event)
-      },
-      onPlayerTimeupdate (event) {
-        console.log(event)
-      },
-      onPlayerCanplay (event) {
-        console.log(event)
-      },
-      onPlayerCanplaythrough (event) {
-        console.log(event)
-      },
-      playerStateChanged (event) {
-        console.log(event)
       },
       playerReadied () {
         console.log('playerReadied')

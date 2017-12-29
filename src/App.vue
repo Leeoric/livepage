@@ -37,11 +37,8 @@
       getPageData () {
         api.getData(apiConfig.connector.getMeetingDetail, 'GET', '')
           .then(res => {
-            console.log('mock data is : ----', res)
-            console.log('mock video url is : ----', res.data.video.detail)
-            if (res.data.video && res.data.video.display === true) {
-              // TODO 提交结果到state
-            }
+            console.log('mock data: ', res)
+            // TODO 提交结果到state
           })
       }
     }
