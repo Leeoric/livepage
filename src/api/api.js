@@ -16,20 +16,32 @@ axios.interceptors.response.use(function (response) {
 })
 
 // 封装axios的post请求
-export function fetch (url, params) {
-  return new Promise((resolve, reject) => {
-    axios.post(url, params)
-      .then(response => {
-        resolve(response.data)
-      })
-      .catch((error) => {
-        reject(error)
-      })
-  })
+export function fetch (url, method, params) {
+  if (method === 'GET') {
+    return new Promise((resolve, reject) => {
+      axios.get(url, params)
+        .then(response => {
+          resolve(response.data)
+        })
+        .catch((error) => {
+          reject(error)
+        })
+    })
+  } else if (method === 'POST') {
+    return new Promise((resolve, reject) => {
+      axios.post(url, params)
+        .then(response => {
+          resolve(response.data)
+        })
+        .catch((error) => {
+          reject(error)
+        })
+    })
+  }
 }
 
 export default {
-  JH_news (url, params) {
-    return fetch(url, params)
+  getData (url, method, params) {
+    return fetch(url, method, params)
   }
 }

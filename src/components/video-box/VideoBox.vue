@@ -1,7 +1,11 @@
 <template>
   <div class="video-box">
     <div class="video-container" ref="videoContainer">
+      <div class="video-img" ref="videoImg" v-show="!display">
+        <img src="">
+      </div>
       <video-player class="video-player-box"
+                    v-show="display"
                     ref="videoPlayer"
                     :options="playerOptions"
                     :playsinline="true"
@@ -22,16 +26,13 @@
   </div>
 </template>
 <script type="text/ecmascript-6">
-  import api from 'api/api'
+  import { mapState } from 'vuex'
 
   export default {
     name: 'VideoBox',
     data () {
       return {
-        streams: {
-          rtmp: '',
-          hls: ''
-        },
+        display: true,
         playerOptions: {
           overNative: true,
           autoplay: false,
@@ -42,8 +43,8 @@
           sourceOrder: true,
           flash: {hls: {withCredentials: false}},
           html5: {hls: {withCredentials: false}},
-          sources: []
-//          poster: '/vue-videojs-demo/static/images/logo.png',
+          sources: [],
+          poster: './../../assets/preview.png'
 //          controlBar: {
 //            timeDivider: false, // 时间分割线
 //            durationDisplay: false, // 总时间
@@ -57,29 +58,35 @@
     beforeCreate () {
     },
     created () {
-      this.setNewsApi()
+      this.display = this.video.display
     },
     computed: {
-      player () {
-        return this.$refs.videoPlayer.player
-      }
+      ...mapState(['video'])
     },
     mounted () {
-      const domId = document.querySelector('.video-player-box').children[0].id
-      document.querySelector('#' + domId).style.width = '100%'
+      this.setPlayerStyle()
+      this.showVideo()
     },
     methods: {
-      setNewsApi () {
-        api.JH_news('/news/index', 'type=top&key=123456')
-          .then(res => {
-//            console.log('mock data is : ----', res)
-//            console.log('mock video url is : ----', res.data.video.detail)
-            if (res.data.video.display === true) {
-              this.playerOptions.sources = res.data.video.detail
-              this.playerOptions.autoplay = true
-              this.playerOptions.width = getComputedStyle(this.$refs.videoContainer).width
-            }
-          })
+      setPlayerStyle () {
+        this.playerOptions.width = window.getComputedStyle(this.$refs.videoContainer).width
+        const domId = document.querySelector('.video-player-box').children[0].id
+        document.querySelector('#' + domId).style.width = '100%'
+      },
+      showVideo () {
+        if (this.display) {
+          this.playerOptions.sources = this.video.detail
+          this.playerOptions.autoplay = true
+        } else {
+          if (this.video.image) {
+            this.$refs.videoImg.children[0].src = this.video.image
+          } else {
+            this.$refs.videoImg.children[0].src = 'src/assets/preview.jpg?v=' + new Date().getTime()
+          }
+        }
+      },
+      Countdown () {
+        // TODO 倒计时功能
       },
       onPlayerPlay (event) {
         console.log(event)
@@ -130,6 +137,13 @@
       top: 0
       width: 100%
       height: 320px
+      .video-img
+        width: 100%
+        height: 100%
+        position: relative
+        z-index: 9999
+        img
+          width: 100%
       .video-player-box
         width: 100%
         height: 100%

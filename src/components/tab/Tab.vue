@@ -1,30 +1,54 @@
 <template>
   <div>
-    <div class="tab">
+    <div class="tab" v-show="showTab">
       <router-link tag="div" class="tab-item" to="/introduce">
         <span class="tab-link">简介</span>
       </router-link>
-      <router-link tag="div" class="tab-item" to="/comment">
+      <router-link tag="div" class="tab-item" to="/comment" v-show="showComment">
         <span class="tab-link">评论</span>
       </router-link>
-      <router-link tag="div" class="tab-item" to="/document-list">
+      <router-link tag="div" class="tab-item" to="/document-list" v-show="showDocument">
         <span class="tab-link">文档</span>
       </router-link>
-      <router-link tag="div" class="tab-item" to="/more-video">
+      <router-link tag="div" class="tab-item" to="/more-video" v-show="showMoreVideo">
         <span class="tab-link">更多</span>
       </router-link>
     </div>
   </div>
 </template>
 <script type="text/ecmascript-6">
+  import { mapState } from 'vuex'
+
   export default {
     data () {
       return {
+        showTab: true,
+        showDocument: true,
+        showMoreVideo: true,
+        showComment: true
       }
+    },
+    beforeCreate () {
+    },
+    created () {
+      this.showTabColumn()
+    },
+    mounted () {
+    },
+    computed: {
+      ...mapState(['document', 'moreVideo', 'comment'])
     },
     components: {
     },
     methods: {
+      showTabColumn () {
+        this.showDocument = this.document.display
+        this.showMoreVideo = this.moreVideo.display
+        this.showComment = this.comment.display
+        if (!this.showDocument && !this.showMoreVideo && !this.showComment) {
+          this.showTab = false
+        }
+      }
     }
   }
 </script>

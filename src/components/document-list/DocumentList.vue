@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="column document-list">
     文档
 	</div>
 </template>

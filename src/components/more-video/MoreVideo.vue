@@ -1,5 +1,5 @@
 <template>
-    <div>更多视频</div>
+    <div class="column more-video">更多视频</div>
 </template>
 <script type="text/ecmascript-6">
 </script>

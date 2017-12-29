@@ -18,7 +18,7 @@ const testData = {
     },
     'introduce': {
       'display': '@boolean',
-      'detail': '@string(10,100)'
+      'detail': '@string(100,1000)'
     },
     'document': {
       'display': '@boolean',
