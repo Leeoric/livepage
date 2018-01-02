@@ -27,7 +27,7 @@
           overNative: true,
           autoplay: false,
           controls: true,
-          width: '375',
+          width: '700',
           height: '320',
           techOrder: ['flash', 'html5'],
           sourceOrder: true,
@@ -48,14 +48,20 @@
     beforeCreate () {
     },
     created () {
-      this.display = this.video.display
     },
     computed: {
       ...mapState(['video'])
     },
+    watch: {
+      video: function () {
+        console.log('watched video had changed', this.video)
+        this.showVideo()
+      }
+    },
     mounted () {
       this.setPlayerStyle()
       this.showVideo()
+      console.log('video info: ----', this.video)
     },
     methods: {
       setPlayerStyle () {
@@ -64,9 +70,11 @@
         document.querySelector('#' + domId).style.width = '100%'
       },
       showVideo () {
-        if (this.display) {
+        console.log('show video function', this.video)
+        this.display = this.video.display
+        if (this.video.display) {
           this.playerOptions.sources = this.video.detail
-          this.playerOptions.autoplay = true
+          this.playerOptions.autoplay = this.video.display
         } else {
           if (this.video.image) {
             this.$refs.videoImg.children[0].src = this.video.image
@@ -101,6 +109,7 @@
         height: 100%
         position: relative
         z-index: 9999
+        overflow: hidden
         img
           width: 100%
       .video-player-box

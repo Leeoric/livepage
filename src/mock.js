@@ -2,9 +2,16 @@
 import Mock from 'mockjs'
 // mock一组数据
 const testData = {
+  'meetingId': 1101,
+  'serverTimeStmp': 1514535607930,
+  'startTime': 1614535618461,
+  'preview': '@string',
+  'meetingTitle': '@ctitle(10.30)',
+  'speaker': '@string(2,8)',
   'data': {
     'video': {
-      'display': true,
+      'image': 'http://3c-share.wind.com.cn/UnitedWeb/cmsapp/Sites/3cvideopreloadpic/preload.jpg',
+      'display': false,
       'detail': [
         {
           'type': 'rtmp/mp4',
@@ -17,10 +24,10 @@ const testData = {
       ]
     },
     'introduce': {
-      'display': '@boolean',
-      'detail': '@string(100,1000)'
+      'display': true,
+      'detail': '@string(1000,3000)'
     },
-    'document': {
+    'documents': {
       'display': '@boolean',
       'detail|1-5': [{
         'type': 'doc',
@@ -37,8 +44,11 @@ const testData = {
           'date': '@datetime'
         }
       ]
+    },
+    'comment': {
+      'display': false
     }
   }
 }
 // Mock.mock( url, post/get , 返回的数据)；
-Mock.mock('/news/index', 'post', testData)
+Mock.mock('/news/index', 'get', testData)

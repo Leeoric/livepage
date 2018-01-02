@@ -1,7 +1,7 @@
 <template>
   <div class="column introduce" ref="introduce" v-show="display">
     <div class="meeting-title">
-      <h1 ref="meetingTitle"></h1>
+      <h1 ref="meetingTitleText"></h1>
     </div>
     <div class="meeting-detail" ref="meetingDetail"></div>
   </div>
@@ -18,7 +18,15 @@
       }
     },
     computed: {
-      ...mapState(['introduce'])
+      ...mapState(['introduce', 'meetingTitle'])
+    },
+    watch: {
+      introduce: function () {
+        this.showMeetingDetail()
+      },
+      title: function () {
+        this.showMeetingDetail()
+      }
     },
     beforeCreat () {
     },
@@ -26,19 +34,14 @@
       this.display = this.introduce.display
     },
     mounted () {
-      if (this.display) {
-        this.showMeetingDetail()
-      }
+      this.showMeetingDetail()
     },
     methods: {
       showMeetingDetail () {
-        if (!this.introduce.title) {
-          this.$refs.meetingTitle.innerText = '暂无标题'
-        } else if (!this.introduce.detail) {
-          this.$refs.meetingDetail.innerHTML = '暂无内容'
-        }
-        this.$refs.meetingTitle.innerText = this.introduce.title
+        this.display = this.introduce.display
+        this.$refs.meetingTitleText.innerText = this.meetingTitle
         this.$refs.meetingDetail.innerHTML = this.introduce.detail
+        console.log('introduce components info: ---', this.meetingTitle, '---', this.introduce)
       }
     }
   }
@@ -52,4 +55,6 @@
         font-size: 18px
         font-weight: normal
         line-height: 40px
+    .meeting-detail
+      word-wrap: break-word
 </style>

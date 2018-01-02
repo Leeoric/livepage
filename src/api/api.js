@@ -17,7 +17,7 @@ axios.interceptors.response.use(function (response) {
 
 // 封装axios的post请求
 export function fetch (url, method, params) {
-  if (method === 'GET') {
+  if (method === 'get') {
     return new Promise((resolve, reject) => {
       axios.get(url, params)
         .then(response => {
@@ -27,7 +27,7 @@ export function fetch (url, method, params) {
           reject(error)
         })
     })
-  } else if (method === 'POST') {
+  } else if (method === 'post') {
     return new Promise((resolve, reject) => {
       axios.post(url, params)
         .then(response => {

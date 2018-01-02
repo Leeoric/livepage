@@ -36,17 +36,32 @@
     mounted () {
     },
     computed: {
-      ...mapState(['document', 'moreVideo', 'comment'])
+      ...mapState(['documents', 'moreVideo', 'comment'])
+    },
+    watch: {
+      documents: function () {
+        this.showTabColumn()
+      },
+      moreVideo: function () {
+        this.showTabColumn()
+      },
+      comment: function () {
+        this.showTabColumn()
+      }
     },
     components: {
     },
     methods: {
       showTabColumn () {
-        this.showDocument = this.document.display
+        console.log('tab column data: ---', this.documents.display, this.moreVideo.display, this.comment.display)
+        this.showDocument = this.documents.display
         this.showMoreVideo = this.moreVideo.display
         this.showComment = this.comment.display
         if (!this.showDocument && !this.showMoreVideo && !this.showComment) {
           this.showTab = false
+          this.$router.push({path: './introduce'})
+        } else {
+          this.showTab = true
         }
       }
     }
