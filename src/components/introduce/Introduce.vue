@@ -26,12 +26,13 @@
       },
       title: function () {
         this.showMeetingDetail()
+      },
+      $route: function () {
       }
     },
     beforeCreat () {
     },
     created () {
-      this.display = this.introduce.display
     },
     mounted () {
       this.showMeetingDetail()
@@ -41,7 +42,7 @@
         this.display = this.introduce.display
         this.$refs.meetingTitleText.innerText = this.meetingTitle
         this.$refs.meetingDetail.innerHTML = this.introduce.detail
-        console.log('introduce components info: ---', this.meetingTitle, '---', this.introduce)
+        console.log('introduce components title and detail: ---', this.meetingTitle, '---', this.introduce)
       }
     }
   }

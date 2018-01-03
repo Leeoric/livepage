@@ -11,7 +11,7 @@ const testData = {
   'data': {
     'video': {
       'image': 'http://3c-share.wind.com.cn/UnitedWeb/cmsapp/Sites/3cvideopreloadpic/preload.jpg',
-      'display': false,
+      'display': true,
       'detail': [
         {
           'type': 'rtmp/mp4',
@@ -25,7 +25,7 @@ const testData = {
     },
     'introduce': {
       'display': true,
-      'detail': '@string(1000,3000)'
+      'detail': '@cword(500,1000)'
     },
     'documents': {
       'display': '@boolean',

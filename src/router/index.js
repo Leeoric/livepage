@@ -8,30 +8,26 @@ import DocumentList from 'components/document-list/DocumentList'
 Vue.use(Router)
 
 export default new Router({
+  // mode: 'history',
   routes: [
     {
       path: '/',
-      name: 'Introduce',
-      component: Introduce
+      redirect: '/introduce'
     },
     {
       path: '/introduce',
-      name: 'Introduce',
       component: Introduce
     },
     {
       path: '/more-video',
-      name: 'MoreVideo',
       component: MoreVideo
     },
     {
       path: '/comment',
-      name: 'Comment',
       component: Comment
     },
     {
       path: '/document-list',
-      name: 'DocumentList',
       component: DocumentList
     }
   ]

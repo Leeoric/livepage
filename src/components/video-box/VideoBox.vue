@@ -79,14 +79,15 @@
           if (this.video.image) {
             this.$refs.videoImg.children[0].src = this.video.image
           } else {
+            this.$refs.videoImg.children[0].src = 'static/images/preview.jpg'
           }
         }
       },
       Countdown () {
         // TODO 倒计时功能
       },
-      playerReadied () {
-        console.log('playerReadied')
+      playerReadied (e) {
+        console.log('playerReadied', e)
       }
     }
   }
